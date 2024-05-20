@@ -10,12 +10,12 @@ public class SupportObjectManager : MonoBehaviour
 
     private void OnEnable()
     {
-        DummyInputTester.onProgressTraining += AddCurrentActivityObject;
+        DummyInputTester.onActivityChanged += AddCurrentActivityObject;
     }
 
     private void OnDisable()
     {
-        DummyInputTester.onProgressTraining -= AddCurrentActivityObject;
+        DummyInputTester.onActivityChanged -= AddCurrentActivityObject;
     }
 
     private void Start()
@@ -28,8 +28,6 @@ public class SupportObjectManager : MonoBehaviour
             var receiver = Instantiate(generalSupportReceiver, obj.transform);
             generalReceiverList.Add(receiver);
         }
-
-        AddCurrentActivityObject();
     }
 
     private void AddCurrentActivityObject()

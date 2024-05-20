@@ -10,6 +10,9 @@ public class DummyInputTester : MonoBehaviour
     public delegate void OnError();
     public static event OnError onError;
 
+    public delegate void OnActivityChanged();
+    public static event OnActivityChanged onActivityChanged;
+
     [SerializeField] List<GameObject> dummyActvities = new List<GameObject>();
     private int activityNr = 0;
 
@@ -18,6 +21,7 @@ public class DummyInputTester : MonoBehaviour
     private void Start()
     {
         CurrentActivity = dummyActvities[activityNr];
+        onActivityChanged();
     }
 
     public void OnDummyAction(InputAction.CallbackContext context)
@@ -47,6 +51,7 @@ public class DummyInputTester : MonoBehaviour
         }
 
         CurrentActivity = dummyActvities[activityNr];
+        onActivityChanged();
     }
 
     public void OnMistakeMade(InputAction.CallbackContext context)
